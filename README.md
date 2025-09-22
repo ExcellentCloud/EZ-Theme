@@ -20,12 +20,7 @@
 
 ## 技术栈
 
-- Vue 3 - 渐进式JavaScript框架
-- Vue Router - 官方路由管理器
-- Vuex - 状态管理模式
-- Axios - 基于Promise的HTTP客户端
-- Sass - CSS预处理器
-- Vue I18n - 国际化解决方案
+
 
 ## 项目结构
 
