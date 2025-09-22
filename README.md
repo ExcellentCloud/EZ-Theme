@@ -7,6 +7,8 @@
 
 [![Build EZ-Theme](https://github.com/ExcellentCloud/EZ-Theme/actions/workflows/main.yml/badge.svg)](https://github.com/ExcellentCloud/EZ-Theme/actions/workflows/main.yml)
 
+详细部署方案
+
 ## 特性
 
 - 🎨 美观的UI设计，简约高端
