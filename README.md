@@ -7,7 +7,7 @@
 
 [![Build EZ-Theme](https://github.com/ExcellentCloud/EZ-Theme/actions/workflows/main.yml/badge.svg)](https://github.com/ExcellentCloud/EZ-Theme/actions/workflows/main.yml)
 
-Actions的配置你也可以完成，详细部署文档在“Ez_Theme_Github_Actions_Tutorial.pdf”
+Actions的配置你也可以完成，详细部署文档在“Ez_Theme_Github_Actions_Tutorial.pdf”中，你可以自行阅读并完成，一键复制代码与更多玩法等待更新！
 
 ## 开始使用
 
