@@ -16,8 +16,9 @@
 ## 自定义配置
 请在打包后自行前往JS文件进行修改操作！
 
-## 
-技术栈、特性与项目结构请前往上游仓库（https://github.com/PangHu-Code/EZ-Theme）
+## 其它的话
+#### 技术栈、特性与项目结构请前往上游仓库（https://github.com/PangHu-Code/EZ-Theme）
+
 
 
 
