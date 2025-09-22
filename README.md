@@ -2,7 +2,8 @@
 
 一个美观、现代的V2Board管理后台前端项目，基于Vue 3开发。
 
-## 自定义配置
+## 🥳自动化打包技术
+### 我们基于Actions
 
 [![Build EZ-Theme](https://github.com/ExcellentCloud/EZ-Theme/actions/workflows/main.yml/badge.svg)](https://github.com/ExcellentCloud/EZ-Theme/actions/workflows/main.yml)
 
