@@ -3,7 +3,9 @@
 一个美观、现代的V2Board管理后台前端项目，基于Vue 3开发。
 
 ## 🥳自动化打包技术
-### 我们基于Actions
+### 我们基于Actions实现了自动化打包技术，只需要两分钟就能零成本获取```bash
+ez-theme-dist
+```
 
 [![Build EZ-Theme](https://github.com/ExcellentCloud/EZ-Theme/actions/workflows/main.yml/badge.svg)](https://github.com/ExcellentCloud/EZ-Theme/actions/workflows/main.yml)
 
