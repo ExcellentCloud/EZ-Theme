@@ -2,6 +2,8 @@
 
 一个美观、现代的V2Board管理后台前端项目，基于Vue 3开发。
 
+[![Build EZ-Theme](https://github.com/ExcellentCloud/EZ-Theme/actions/workflows/main.yml/badge.svg)](https://github.com/ExcellentCloud/EZ-Theme/actions/workflows/main.yml)
+
 ## 特性
 
 - 🎨 美观的UI设计，简约高端
