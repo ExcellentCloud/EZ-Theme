@@ -1,0 +1,39 @@
+name: Build EZ-Theme
+
+on:
+  workflow_dispatch:   # 手动触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 拉取代码
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. 设置 Node.js 环境
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # 3. 安装项目依赖并修复可能缺失的依赖
+      - name: Install dependencies
+        run: |
+          npm install
+          # 自动安装 @vueuse/motion 可能依赖的缺失包
+          npm install defu --save
+          npm install --legacy-peer-deps   # 防止 peerDependencies 报错
+          # 你还可以在这里加更多包，如果以后发现报错
+
+      # 4. 构建项目
+      - name: Build project
+        run: npm run build
+
+      # 5. 上传构建产物
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ez-theme-dist
+          path: dist
