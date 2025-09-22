@@ -1,4 +1,4 @@
-# V2Board User 前端项目
+# EZ-Theme
 
 一个美观、现代的V2Board管理后台前端项目，基于Vue 3开发。
 
