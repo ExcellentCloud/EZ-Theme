@@ -1,9 +1,7 @@
-name: Build and Package EZ-Theme
+name: Build EZ-Theme
 
 on:
-  workflow_dispatch:   # 可以手动点击运行
-  push:
-    branches: [ main ] # 当你推送到 main 分支时自动运行
+  workflow_dispatch:   # 手动触发
 
 jobs:
   build:
@@ -25,7 +23,7 @@ jobs:
         run: npm run build
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4   # ✅ 仅改 v4
         with:
-          name: ez-theme-build
+          name: ez-theme-dist
           path: dist
