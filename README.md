@@ -23,14 +23,7 @@
 ### 🚫不好意思，我们不需要这种浪费时间与资源的打包方式！
 
 ## 自定义配置
-
-### 主题配置
-
-主题颜色和其他配置可以在 `src/utils/baseConfig.js` 文件中修改。
-
-### API配置
-
-API基础URL可以在 `src/utils/baseConfig.js` 文件中修改。
+请在打包后自行前往JS文件进行修改操作！
 
 ## 技术栈与项目结构请前往上游仓库（https://github.com/PangHu-Code/EZ-Theme）
 
