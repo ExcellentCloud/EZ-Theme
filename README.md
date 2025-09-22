@@ -1,4 +1,4 @@
-# EZ-Theme
+# EZ-Theme PRO
 
 一个美观、现代的V2Board管理后台前端项目，基于Vue 3开发。
 
@@ -18,8 +18,6 @@
 - 🔒 完善的登录认证系统
 - 🚀 模块化的代码结构，易于维护
 
-## 技术栈与项目结构请前往上游仓库（https://github.com/PangHu-Code/EZ-Theme）
-
 ## 开始使用
 
 ### 🚫不好意思，我们不需要这种浪费时间与资源的打包方式！
@@ -33,6 +31,8 @@
 ### API配置
 
 API基础URL可以在 `src/utils/baseConfig.js` 文件中修改。
+
+## 技术栈与项目结构请前往上游仓库（https://github.com/PangHu-Code/EZ-Theme）
 
 ## 开源万岁
 
