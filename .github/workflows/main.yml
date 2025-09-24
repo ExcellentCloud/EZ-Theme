@@ -1,39 +1,49 @@
-name: Build EZ-Theme
+name: Build and Release EZ-Theme
 
 on:
-  workflow_dispatch:   # 手动触发
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # 允许创建 Release 和上传资产
 
     steps:
-      # 1. 拉取代码
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. 设置 Node.js 环境
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      # 3. 安装项目依赖并修复可能缺失的依赖
       - name: Install dependencies
         run: |
           npm install
-          # 自动安装 @vueuse/motion 可能依赖的缺失包
           npm install defu --save
-          npm install --legacy-peer-deps   # 防止 peerDependencies 报错
-          # 你还可以在这里加更多包，如果以后发现报错
+          npm install --legacy-peer-deps
 
-      # 4. 构建项目
       - name: Build project
         run: npm run build
 
-      # 5. 上传构建产物
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Zip dist folder
+        run: zip -r ez-theme-dist.zip dist
+
+      - name: Create or update Release via softprops
+        uses: softprops/action-gh-release@v2
         with:
-          name: ez-theme-dist
-          path: dist
+          tag_name: build-${{ github.run_number }}
+          name: "Build ${{ github.run_number }} (${{ github.sha }})"
+          body: "Automatically built artifact"
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload asset to that Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ez-theme-dist.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
