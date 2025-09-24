@@ -9,7 +9,7 @@
 
 Actions的配置你也可以完成，详细部署文档在“Ez_Theme_Github_Actions_Tutorial.pdf”中，你可以自行阅读并完成。
 
-⚠️请注意：PDF文档中的
+⚠️请注意：PDF文档中的打包指令也已失效，请前往“.github/workflows/main.yml”
 
 ## 开始使用
 
