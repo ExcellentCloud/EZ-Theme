@@ -1,0 +1,62 @@
+name: Build EZ-Theme 🚀
+
+on:
+  workflow_dispatch:   # 👉 手动触发构建
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 🟢 第 1 步：拉取代码
+      - name: 📥 Checkout 代码
+        uses: actions/checkout@v4   # ✅ 最新版
+
+      # 🟢 第 2 步：设置 Node.js 环境
+      - name: 🛠️ 安装 Node.js 环境
+        uses: actions/setup-node@v4   # ✅ 最新版
+        with:
+          node-version: 20            # ✅ LTS 最新稳定版
+
+      # 🟢 第 3 步：安装依赖
+      - name: 📦 安装项目依赖
+        run: |
+          echo "🔍 开始安装依赖..."
+          npm install --legacy-peer-deps
+          echo "✅ 依赖安装完成！"
+
+      # 🟢 第 4 步：补充缺失依赖
+      - name: 🧩 修复缺失依赖
+        run: |
+          echo "🔧 安装 defu 依赖..."
+          npm install defu --save
+          echo "✅ 缺失依赖安装完成！"
+
+      # 🟢 第 5 步：自动修复安全问题（可选）
+      - name: 🛡️ 安全修复（非必须）
+        run: |
+          echo "🔍 检查安全漏洞..."
+          npm audit fix || true
+          echo "✅ 安全问题已尽量修复"
+
+      # 🟢 第 6 步：构建项目
+      - name: 🏗️ 构建项目
+        run: |
+          echo "⚙️ 开始构建..."
+          npm run build
+          echo "✅ 构建完成！"
+
+      # 🟢 第 7 步：打包构建产物
+      - name: 📦 压缩构建结果
+        run: |
+          zip -r ez-theme-dist.zip dist
+          echo "✅ 已生成压缩包：ez-theme-dist.zip"
+
+      # 🟢 第 8 步：上传构建产物
+      - name: ☁️ 上传打包产物
+        uses: actions/upload-artifact@v4   # ✅ 最新版
+        with:
+          name: ez-theme-dist
+          path: |
+            dist
+            ez-theme-dist.zip
