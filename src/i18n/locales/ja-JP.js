@@ -385,7 +385,8 @@ export default {
     upPictures: '画像をアップロード',
     uploadingImages: 'アップロード中...',
     uploadTipText: 'ここに画像をドラッグ＆ドロップするか、クリックしてアップロード',
-    uploadDescText: 'JPG、PNG、GIF 形式に対応、最大 5 MB'
+    uploadDescText: 'JPG、PNG、GIF 形式に対応、最大 5 MB',
+    uploadSuccess: '画像アップロード成功',
   },
   profile: {
     title: 'ユーザーセンター',
@@ -398,10 +399,13 @@ export default {
     createdAt: '作成日',
     expiredAt: '有効期限',
     notifications: '通知設定',
+    accountSettings: 'アカウント設定',
     expireRemind: '有効期限リマインダー',
     trafficRemind: '流量リマインダー',
+    autoRenewal: '自動更新',
     expireRemindDesc: 'アカウント有効期限リマインダーメールを受信',
     trafficRemindDesc: '流量使い切りのリマインダーメールを受信',
+    autoRenewalDesc: '有効期限切れ時に自動的にプランを更新',
     security: 'セキュリティ設定',
     changePassword: 'パスワード変更',
     changePasswordTitle: 'アカウントパスワード変更',

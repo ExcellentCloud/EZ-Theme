@@ -383,7 +383,8 @@ export default {
         upPictures: 'Tải lên hình ảnh',
         uploadingImages: 'Đang tải lên...',
         uploadTipText: 'Kéo thả hình vào đây hoặc nhấn để tải lên',
-        uploadDescText: 'Hỗ trợ định dạng JPG, PNG, GIF, tối đa 5 MB'
+        uploadDescText: 'Hỗ trợ định dạng JPG, PNG, GIF, tối đa 5 MB',
+        uploadSuccess: 'Hình ảnh đã được tải lên thành công',
     },
     profile: {
         title: 'Trung tâm Người dùng',
@@ -396,10 +397,13 @@ export default {
         createdAt: 'Thời gian tạo',
         expiredAt: 'Thời gian hết hạn',
         notifications: 'Cài đặt thông báo',
+        accountSettings: 'Cài đặt tài khoản',
         expireRemind: 'Nhắc nhở hết hạn',
         trafficRemind: 'Nhắc nhở lưu lượng',
+        autoRenewal: 'Gia hạn tự động',
         expireRemindDesc: 'Nhận email nhắc nhở hết hạn tài khoản',
         trafficRemindDesc: 'Nhận email nhắc nhở khi hết lưu lượng',
+        autoRenewalDesc: 'Tự động gia hạn gói cước khi hết hạn',
         security: 'Cài đặt bảo mật',
         changePassword: 'Đổi mật khẩu',
         changePasswordTitle: 'Đổi mật khẩu tài khoản',

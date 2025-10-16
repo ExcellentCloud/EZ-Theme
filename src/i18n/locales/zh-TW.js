@@ -376,7 +376,16 @@ export default {
     
     largeScreenNotice: '偵測到較大螢幕',
     switchToDesktop: '建議使用電腦端工單頁面以獲得更好的體驗',
-    switchToDesktopView: '切換到電腦端視圖'
+    switchToDesktopView: '切換到電腦端視圖',
+    popup: {
+            close_btn: '關閉',
+            wait_close_btn: '{seconds}秒後關閉'
+        },
+    upPictures: '上傳圖片',
+    uploadingImages: '上傳中...',
+    uploadTipText: '拖曳圖片到此處或點擊上傳',
+    uploadDescText: '支援 JPG、PNG、GIF 格式，最大 5 MB',
+    uploadSuccess: '圖片上傳成功'
   },
   profile: {
     title: '用戶中心',
@@ -389,10 +398,13 @@ export default {
     createdAt: '建立時間',
     expiredAt: '到期時間',
     notifications: '通知設定',
+    accountSettings: '帳號設定',
     expireRemind: '到期提醒',
     trafficRemind: '流量提醒',
+    autoRenewal: '自動續費',
     expireRemindDesc: '接收帳戶到期提醒郵件',
     trafficRemindDesc: '接收流量用盡提醒郵件',
+    autoRenewalDesc: '到期時自動續費套餐',
     security: '安全設定',
     changePassword: '修改密碼',
     changePasswordTitle: '修改帳戶密碼',
@@ -529,12 +541,7 @@ export default {
     popup: {
       close_btn: '我知道了',
       wait_close_btn: '請等待 {seconds} 秒'
-    }
-    ,
-    upPictures: '上傳圖片',
-    uploadingImages: '上傳中...',
-    uploadTipText: '拖曳圖片到此處或點擊上傳',
-    uploadDescText: '支援 JPG、PNG、GIF 格式，最大 5 MB'
+    },
   },
   order: {
     title: '確認訂單',

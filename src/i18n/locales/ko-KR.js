@@ -386,7 +386,8 @@ export default {
     upPictures: '이미지 업로드',
     uploadingImages: '업로드 중...',
     uploadTipText: '이미지를 이곳에 드래그하거나 클릭하여 업로드',
-    uploadDescText: 'JPG, PNG, GIF 형식 지원, 최대 5 MB'
+    uploadDescText: 'JPG, PNG, GIF 형식 지원, 최대 5 MB',
+    uploadSuccess: '이미지 업로드 성공',
   },
   profile: {
     title: '사용자 센터',
@@ -399,10 +400,13 @@ export default {
     createdAt: '생성 시간',
     expiredAt: '만료 시간',
     notifications: '알림 설정',
+    accountSettings: '계정 설정',
     expireRemind: '만료 알림',
     trafficRemind: '트래픽 알림',
+    autoRenewal: '자동 갱신',
     expireRemindDesc: '계정 만료 알림 이메일 수신',
     trafficRemindDesc: '트래픽 소진 알림 이메일 수신',
+    autoRenewalDesc: '만료 시 플랜 자동 갱신',
     security: '보안 설정',
     changePassword: '비밀번호 변경',
     changePasswordTitle: '계정 비밀번호 변경',

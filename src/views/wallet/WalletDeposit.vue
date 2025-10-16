@@ -28,6 +28,27 @@
             <div class="skeleton-balance-value"></div>
             <div class="skeleton-balance-label"></div>
           </div>
+
+          <!-- 自动续费设置 -->
+          <div class="balance-setting">
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-label">{{ $t('profile.autoRenewal') }}</span>
+                <span class="setting-description">{{ $t('profile.autoRenewalDesc') }}</span>
+              </div>
+              <div class="setting-toggle">
+                <label class="switch" :class="{ 'disabled': updatingAutoRenewal }">
+                  <input 
+                    type="checkbox" 
+                    v-model="autoRenewal" 
+                    @change="updateAutoRenewal" 
+                    :disabled="updatingAutoRenewal" 
+                  />
+                  <span class="slider round" :class="{ 'loading': updatingAutoRenewal }"></span>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -123,7 +144,7 @@ import { ref, computed, onMounted, reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useToast } from '@/composables/useToast';
 import { IconAlertCircle, IconShoppingCart } from '@tabler/icons-vue';
-import { getUserInfo } from '@/api/user';
+import { getUserInfo, updateRemindSettings as apiUpdateRemind } from '@/api/user';
 import { createOrderDeposit, getUserConfig } from '@/api/wallet';
 import { isXiaoV2board } from '@/utils/baseConfig';
 import { useRouter } from 'vue-router';
@@ -142,6 +163,8 @@ const selectedAmount = ref(WALLET_CONFIG.defaultSelectedAmount || null);
 const customAmount = ref('');
 const amountError = ref('');
 const minimumDepositAmount = WALLET_CONFIG.minimumDepositAmount || 1;
+const autoRenewal = ref(false);
+const updatingAutoRenewal = ref(false);
 const loading = reactive({
   balance: true,
   submitting: false,
@@ -204,12 +227,41 @@ const fetchUserBalance = async () => {
     const response = await getUserInfo();
     if (response && response.data) {
       userBalance.value = response.data.balance || 0;
+      autoRenewal.value = !!response.data.auto_renewal;
     }
   } catch (error) {
     console.error('获取用户余额失败:', error);
     showToast(error.response?.message || error.message || t('errors.serverError') || t('common.error_occurred'), 'error');
   } finally {
     loading.balance = false;
+  }
+};
+
+/**
+ * 更新自动续费设置
+ */
+const updateAutoRenewal = async () => {
+  updatingAutoRenewal.value = true;
+  
+  try {
+    const data = {
+      auto_renewal: autoRenewal.value ? 1 : 0
+    };
+    
+    const response = await apiUpdateRemind(data);
+    
+    if (response && response.data) {
+      showToast(t('profile.updateSuccess'), 'success');
+    }
+  } catch (error) {
+    console.error('更新自动续费设置失败:', error);
+    
+    // 回滚状态
+    autoRenewal.value = !autoRenewal.value;
+    
+    showToast(error.response?.message || error.message || t('profile.updateError'), 'error');
+  } finally {
+    updatingAutoRenewal.value = false;
   }
 };
 const handleDeposit = async () => {
@@ -312,9 +364,11 @@ onMounted(() => {
   .balance-card {
     .card-body {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 25px;
+      gap: 20px;
     }
     
     .balance-display {
@@ -375,6 +429,111 @@ onMounted(() => {
           transform: translateX(-100%);
           animation: shimmer 2s infinite;
           will-change: transform;
+        }
+      }
+    }
+
+    .balance-setting {
+      width: 100%;
+      padding-top: 15px;
+      border-top: 1px solid var(--border-color);
+      
+      .setting-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        
+        .setting-info {
+          flex: 1;
+          margin-right: 16px;
+          
+          .setting-label {
+            display: block;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-color);
+            margin-bottom: 4px;
+          }
+          
+          .setting-description {
+            font-size: 13px;
+            color: var(--secondary-text-color);
+          }
+        }
+        
+        .setting-toggle {
+          .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 24px;
+            
+            &.disabled {
+              opacity: 0.7;
+              cursor: not-allowed;
+            }
+            
+            input {
+              opacity: 0;
+              width: 0;
+              height: 0;
+              
+              &:checked + .slider {
+                background-color: var(--theme-color);
+              }
+              
+              &:checked + .slider:before {
+                transform: translateX(22px);
+              }
+              
+              &:disabled + .slider {
+                cursor: not-allowed;
+              }
+            }
+            
+            .slider {
+              position: absolute;
+              cursor: pointer;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: #ccc;
+              transition: .4s;
+              border-radius: 34px;
+              
+              &.loading {
+                overflow: hidden;
+                
+                &:before {
+                  animation: pulse 1.5s infinite;
+                }
+                
+                &:after {
+                  content: "";
+                  position: absolute;
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+                  animation: sweep 1.5s infinite;
+                }
+              }
+              
+              &:before {
+                position: absolute;
+                content: "";
+                height: 18px;
+                width: 18px;
+                left: 3px;
+                bottom: 3px;
+                background-color: white;
+                transition: .4s;
+                z-index: 1;
+                border-radius: 50%;
+              }
+            }
+          }
         }
       }
     }
@@ -602,6 +761,27 @@ onMounted(() => {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 .dark-theme {
   .skeleton-balance-value,
